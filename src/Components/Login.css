@@ -1,0 +1,134 @@
+:root {
+  --megenta: rgb(244, 7, 153);
+}
+
+.login_main_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+.lg_second_container {
+  display: flex;
+  position: relative;
+  width: 45rem;
+  height: 30rem;
+  border: 2px solid red;
+  border-radius: 5px;
+}
+.form_container {
+  /* margin-left: 5px; */
+  padding: 2rem;
+  background-color: black;
+  color: white;
+}
+.lg_pg_img {
+  height: 29.8rem;
+  width: 22.5rem;
+}
+.inpt_size {
+  width: 17rem;
+  height: 1.5rem;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(235, 234, 234, 0.841);
+}
+.mg_tp_5px {
+  margin-top: 20px;
+}
+.forgatepass_span {
+  margin-left: 1.5rem;
+}
+.lg_with_container {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+.lg_with_container > span {
+  margin-right: 0.3rem;
+}
+
+.lg_btn {
+  background-color: var(--megenta);
+  color: white;
+  border: none;
+}
+.lg_link_btn {
+  color: white;
+}
+.crt_btn {
+  background-color: white;
+}
+.link_btn {
+  text-decoration: none;
+}
+.text_color_btn {
+  color: var(--megenta);
+  background-color: white;
+}
+.btn {
+  border: 2px solid rgb(244, 7, 153);
+  border-radius: 4px;
+  width: 8.5rem;
+  font-size: 12px;
+  height: 1.8rem;
+  margin-top: 1rem;
+}
+.m_rt {
+  margin-right: 8px;
+}
+.lg_with_btn {
+  border: none;
+  margin-right: 10px;
+  background-color: black;
+}
+
+Link {
+  border: none;
+}
+.crt_ac_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: black;
+  color: white;
+  width: 60vw;
+  height: 90vh;
+  
+  border-radius: 5px;
+  box-shadow: 2px 5px 10px 5px rgba(79, 10, 17, 0.87);
+}
+.crt_ac_container > h2{
+  text-align: center;
+}
+.form_btn > button{
+  margin-top: 2rem;
+  margin-left: 11rem;
+  color: white;
+  background-color: var(--megenta);
+  border: none;
+  height: 2rem;
+  width: 7rem;
+  font-size: 15px;
+  border-radius: 5px;
+  
+}
+
+.create_ac_mrgn {
+  margin-top: 2rem;
+  margin-right: 5rem;
+  text-align: right;
+  
+}
+
+.create_ac_mrgn > input{
+  margin-left: 20px;
+  width: 15rem;
+  height: 2rem;
+  border: none;
+  padding-left: 15px;
+  border-radius: 5px;
+  background-color: rgba(235, 234, 234, 0.841);
+}
