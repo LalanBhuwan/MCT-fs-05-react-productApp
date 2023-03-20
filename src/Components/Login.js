@@ -1,24 +1,28 @@
 import login_img from "./login_img.jpg";
 import { useState } from "react";
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 import "./Login.css";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState();
-  const [allEntry, setAllEntry] = useState([]);
-
-  const submitForm = (e) =>{
-    e.preventDefault();
-    const newEntry = {email: email, password: password};
-    setAllEntry([...allEntry, newEntry]);
-    console.log(allEntry);
-  }
+    const navigate = useNavigate();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [check, setcheck] = useState("");
+    const submitForm = (e) => {
+      e.preventDefault();
+      if (password.length >= 6) {
+        
+        return navigate("/home");
+      } else {
+        
+        alert("Invalid userId and password");
+      }
+    };
 
   return (
     <div className="login_main_container ">
-      <button><Link to={"/home"}>Go to Home</Link></button>
+      {/* <button><Link to={"/home"}>Go to Home</Link></button> */}
       <div className="lg_second_container">
         <div className="form_container">
           <h1>Welcome back to Pretty Login</h1>
@@ -51,7 +55,9 @@ const Login = () => {
             <input
               type="checkbox"
               id="remember"
+              value={check}
               className=" checkbox_btn mg_tp_5px"
+              onChange={(e) => setcheck(e.target.value)}
             />
             <label htmlFor="remember">Remember me?</label>
             <span className="forgatepass_span">Forgat password?</span>

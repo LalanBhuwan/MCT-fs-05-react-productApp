@@ -1,5 +1,32 @@
-import login_img from '../Components/login_img.jpg'
+
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Loading from "./Loading";
+import {
+    allUserAction,
+    femaleUserAction,
+    maleUserAction,
+  } from "./store/Actions";
+
 const UserMain = () => {
+    const data = useSelector((state) => state.userReducer);
+
+    const dispatch = useDispatch();
+    const [allUser, setAllUser] = useState([]);
+    const [loads, setLoads] = useState(true);
+  
+    //for default all users
+    useEffect(() => {
+      fetch("https://randomuser.me/api/?results=500")
+        .then((res) => res.json())
+        .then((data) => {
+          setAllUser(data.results);
+          setLoads(false);
+          dispatch(allUserAction({ type: "ALL", payload: data.results }));
+        });
+      // eslint-disable-next-line
+    }, []);
+
   return (
     <div className="user_container">
       <div className="user_details_container">
@@ -8,14 +35,25 @@ const UserMain = () => {
     dignissim elementum. Mollis tincidunt mattis hendrerit dolor eros enim, nisi ligula ornare.
     Hendrerit parturient habitant pharetra rutrum gravida porttitor eros feugiat. Mollis elit
     sodales taciti duis praesent id. Consequat urna vitae morbi nunc congue.</p>
-    <input type="radio" id="all"/>
+    <input type="radio" id="all"
+    value="option1"
+    onClick={() =>dispatch(allUserAction({ type: "ALL", payload: allUser }))}
+    />
     <lable htmlFor="all">ALL</lable>
-    <input type="radio" id="male"/>
+    <input type="radio" id="male" value="option2"
+              onClick={() =>
+                dispatch(maleUserAction({ type: "MALE", payload: allUser }))
+              }/>
     <lable htmlFor="male">Male</lable>
-    <input type="radio" id="female"/>
+    <input type="radio" id="female" onClick={() =>
+                dispatch(femaleUserAction({ type: "FEMALE", payload: allUser }))
+              }/>
     <lable htmlFor="female">Female</lable>
       </div>
-      
+
+      {loads ? (
+          <Loading />
+        ) : (
         <div className="user_table_container">
             <table id="user_table" rules="rows">
                 <thead>
@@ -27,29 +65,27 @@ const UserMain = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>imag</td>
-                        <td>lalan</td>
-                        <td>lalldlff353433@gmail.com</td>
-                        <td>female</td>
-                    </tr>
-                    <tr>
-                        <td>imag</td>
-                        <td>lalan</td>
-                        <td>lalldlff353433@gmail.com</td>
-                        <td>female</td>
-                    </tr>
-                    <tr>
-                        <td><img alt="img" src={{login_img}}/></td>
-                        <td>lalan</td>
-                        <td>lalldlff353433@gmail.com</td>
-                        <td>female</td>
-                    </tr>
+                {data.length > 0 &&
+                  data.map((item, ind) => {
+                    return (
+                      <tr key={ind}>
+                        <td>
+                          <img
+                            src={item.picture.thumbnail}
+                            alt={item.name.first}
+                          />
+                        </td>
+                        <td>{item.name.first}</td>
+                        <td>{item.email}</td>
+                        <td>{item.gender}</td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
             </table>
 
         </div>
-     
+     )}
     </div>
   );
 };
